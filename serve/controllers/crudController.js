@@ -4,7 +4,10 @@ const routerApi = express.Router();
 
 routerApi.route('/procesar')
   .get((req, res) => {
-    let ubicaciones = new Envio();
+
+  	let nombreEmpresa = req.query.empresa;
+
+    let ubicaciones = new Envio(nombreEmpresa);
 
     res.json(ubicaciones);
   });

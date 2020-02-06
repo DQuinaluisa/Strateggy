@@ -6,10 +6,10 @@ module.exports = class CEcuador extends Empresa {
 		this.tiempo = tiempo
 	}
 
-	enviar(){
+	enviar(empresa){
 
 		return data = {
-			empresa: this.empresa,
+			empresa: empresa,
 			tiempo: this.tiempo
 		}
 	}

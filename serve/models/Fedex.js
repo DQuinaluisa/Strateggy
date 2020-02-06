@@ -6,10 +6,10 @@ module.exports = class Fedex extends Empresa {
 		this.tiempo = "3 dias"
 	}
 
-	enviar(){
+	enviar(empresa){
 
 		return data = {
-			empresa: this.empresa,
+			empresa: empresa,
 			tiempo: this.tiempo
 		}
 	}

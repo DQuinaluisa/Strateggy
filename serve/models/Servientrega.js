@@ -7,10 +7,10 @@ module.exports = class Servientrega extends Empresa {
 		this.tiempo = "8 dias"
 	}
 
-	enviar(){
+	enviar(empresa){
 
 		return data = {
-			empresa: this.empresa,
+			empresa: empresa,
 			tiempo: this.tiempo
 		}
 	}

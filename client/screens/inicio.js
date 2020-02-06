@@ -7,16 +7,17 @@ import { StyleSheet, ImageBackground } from 'react-native';
 import axios from 'axios';
 import { Container, Header, Content, Card, CardItem,  Text, Button, Icon, Left, Body, Title, Right } from 'native-base';
 
-const url = "http://192.168.100.12:3000/server/ubication"
+   nombreEmpresa = ['FEDEX', 'C.Ecuador', 'Servientrega'];
 
 export default class Inicio extends Component {
 
   state = {
     fontLoaded: false,
-    empresas: {}
+    empresas: '',
+
   };
 
-   
+
 
     async componentDidMount() {
         await Font.loadAsync({
@@ -29,14 +30,16 @@ export default class Inicio extends Component {
 
   getEmpresa() {
 
+    let url = 'http://localhost:3000/server/procesar?empresa=${this.state.empresa}'
     const header = {
+
       method: 'GET',
       headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json'
       },
     }
-  return fetch('http://localhost:3000/server/procesar',header)
+  return fetch(url,header)
     .then((response) => response.json())
     .then((responseJson) => {
       alert(responseJson.empresas);
@@ -46,6 +49,8 @@ export default class Inicio extends Component {
     });
 }
  
+const nombreEmpresa = ['FEDEX', 'C.Ecuador', 'Servientrega']; 
+
   render() {
  
     return (
@@ -81,18 +86,13 @@ export default class Inicio extends Component {
                 
                 <CardItem style={styles.detalle}>
                   <Left>
+                  {
+                      this.nombreEmpresa.map(item => <Button  rounded  style={ styles.btn1 } onPress={this.getEmpresa}>
+                                                      <Text>{item}</Text>
+  
+                    </Button> )
+                  }
                    
-                      <Button  rounded  style={ styles.btn1 } onPress={this.getEmpresa}>
-                      <Text>FEDEX</Text>
-                    </Button>
-                    
-                    <Button  rounded  style={ styles.btn2 } onPress={this.getEmpresa}>
-                      <Text>C.Ecuador</Text>
-                    </Button>
-                    
-                    <Button  rounded  style={ styles.btn3 } onPress={this.getEmpresa}>
-                      <Text>Servientrega</Text>
-                    </Button>
                    
                   </Left>
                 </CardItem>
